@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
-from .forms import ContactForm
+from .forms import ContactForm, ClientForm
 
 
 def index(request):
@@ -46,3 +46,14 @@ def contact(request):
         form = ContactForm()
 
     return render(request, 'portfolio/contact.html', {'form': form})
+
+
+def create_client(request):
+    if request.method == 'POST':
+        form = ClientForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = ClientForm()
+    return render(request, 'portfolio/create_client.html', {'form': form})
