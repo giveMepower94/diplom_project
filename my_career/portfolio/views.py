@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from .telegram_bot import *
+import asyncio
 
 from .forms import ContactForm, ClientForm
 
@@ -52,6 +54,22 @@ def create_client(request):
     if request.method == 'POST':
         form = ClientForm(request.POST)
         if form.is_valid():
+
+            name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            resume_1 = form.cleaned_data['resume']
+
+            telegram_message = (f" Новая заявка\n Имя: {name}\n"
+                                f"Фамилия: {last_name}\n"
+                                f"Почта: {email}\n"
+                                f"Телефон: {phone}\n"
+                                f"Резюме: {resume_1}")
+            logging.debug(f'Отправка сообщения: {telegram_message}')
+
+            asyncio.run(send_telegram_message(TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, telegram_message))
+
             form.save()
             return redirect('index')
     else:
