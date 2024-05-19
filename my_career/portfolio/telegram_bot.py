@@ -1,10 +1,11 @@
 import telegram
 import logging
 import asyncio
+from decouple import config
 
-TELEGRAM_BOT_TOKEN = '7133609944:AAG0avgcM-8IHVqsdOy6GrXiOCDcVUumkaY'
+TELEGRAM_BOT_TOKEN = config('TELEGRAM_BOT_TOKEN')
 
-TELEGRAM_CHAT_ID = 6208724492
+TELEGRAM_CHAT_ID = config('TELEGRAM_CHAT_ID', cast=int)
 
 logging.basicConfig(level=logging.DEBUG)
 
