@@ -4,10 +4,10 @@ from .models import Client
 
 class ContactForm(forms.Form):
     message_name = forms.CharField(max_length=100,
-                                   widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'name'}))
+                                   widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя'}))
     message_email = forms.EmailField(max_length=100,
-                                     widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'email'}))
-    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'message'}))
+                                     widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Почта'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Сообщение'}))
 
 
 class ClientForm(forms.ModelForm):

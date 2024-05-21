@@ -74,4 +74,4 @@ def create_client(request):
             return redirect('index')
     else:
         form = ClientForm()
-    return render(request, 'portfolio/create_new_client.html', {'form': form})
+    return render(request, 'portfolio/create_client.html', {'form': form})
