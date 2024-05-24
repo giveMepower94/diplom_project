@@ -65,7 +65,7 @@ def create_client(request):
                                 f"Фамилия: {last_name}\n"
                                 f"Почта: {email}\n"
                                 f"Телефон: {phone}\n"
-                                f"Резюме: {resume_1}")
+                                f"Сообщение: {resume_1}")
             logging.debug(f'Отправка сообщения: {telegram_message}')
 
             asyncio.run(send_telegram_message(TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, telegram_message))
